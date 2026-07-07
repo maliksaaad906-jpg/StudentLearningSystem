@@ -4,8 +4,13 @@ public class StudentService {
     private ArrayList<Student> students = new ArrayList<>();
 
     public void addStudent(Student student){
+       
         if (student == null) {
             throw new IllegalArgumentException("Student cannot be null");
+        }
+        Student existing = searchStudentById(student.getId());
+        if (existing != null) {
+            throw new IllegalArgumentException("Student ID already exist.");
         }
         students.add(student);
     }
